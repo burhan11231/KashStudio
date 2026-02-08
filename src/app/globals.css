@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter";
+}
+
+body {
+  @apply bg-clay text-ink antialiased;
+}
+
+main {
+  @apply min-h-screen;
+}
