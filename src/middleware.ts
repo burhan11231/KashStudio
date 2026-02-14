@@ -1,12 +1,14 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next();
-  response.headers.set("x-kashstudio-middleware", "active");
-  return response;
+  const host = request.headers.get('host') ?? '';
+  if (host && !host.includes('localhost') && !host.includes('kashpages.com')) {
+    request.headers.set('x-kashpages-custom-host', host);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/client/:path*", "/developer/:path*", "/admin/:path*"]
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };

@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --font-inter: "Inter";
+  color-scheme: dark;
 }
 
 body {
-  @apply bg-clay text-ink antialiased;
+  @apply bg-slate-950 text-slate-100 antialiased;
 }
 
-main {
-  @apply min-h-screen;
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-4 py-8 md:px-6 lg:px-8;
+}
+
+.panel {
+  @apply rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-lg shadow-slate-950/40;
 }

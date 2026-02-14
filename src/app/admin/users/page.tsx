@@ -1,15 +1,1 @@
-import { PageShell } from "@/components/layout/page-shell";
-
-export default function AdminUsersPage() {
-  return (
-    <PageShell
-      eyebrow="Admin"
-      title="User management"
-      description="Search users, disable abusive accounts, and reset access."
-    >
-      <div className="rounded-3xl border border-ink/10 bg-white p-6">
-        <p className="text-sm text-storm">User search coming soon.</p>
-      </div>
-    </PageShell>
-  );
-}
+export default function AdminUsers(){return <div className='container-shell'><section className='panel'><h1 className='text-3xl font-bold'>Admin · Users</h1><p className='mt-2 text-slate-400'>Approve, suspend, and review account status.</p></section></div>;}
