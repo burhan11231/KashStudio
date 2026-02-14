@@ -1,53 +1,60 @@
-# KashStudio
+# kashpages-golive
 
-Digital Application Marketplace (Web / Android / iOS) with licensed and full copyright ownership models.
+Production-grade SaaS foundation for **Kashpages** — a schema-driven, secure business go-live platform for Kashmir.
 
-## Core architecture
+## Stack
+- Next.js 14 (App Router), React 18, TypeScript, Tailwind, Framer Motion
+- Firebase Auth / Firestore / Realtime Database / Storage / Functions
+- Firebase Data Connect (PostgreSQL)
+- Cashfree + Razorpay (server-mediated)
 
-| Layer | Technology |
-| --- | --- |
-| Frontend | Next.js + Tailwind CSS |
-| Animations | Framer Motion |
-| Auth | Firebase Auth |
-| Database | Firestore |
-| Backend Logic | Firebase Cloud Functions |
-| Payments | Razorpay |
-| Storage | Firebase Storage |
-| Hosting | Netlify |
-| Analytics | Google Analytics + Search Console |
+## Product shape
+### Public
+- `/`, `/templates`, `/pricing`, `/about`, `/privacy`, `/terms`, `/login`, `/signup`
+- Single-page published business pages via `/[username]/pages/[slug]`
 
-## Ownership models (system enforced)
+### User
+- `/dashboard`, `/dashboard/pages`, `/dashboard/templates`, `/dashboard/settings`
+- `/builder/[pageId]`
 
-- **Licensed**: Multiple buyers allowed, reviews enabled.
-- **Full copyright**: One-time exclusive sale, auto-hidden after purchase.
+### Admin
+- `/admin/users`, `/admin/pages`, `/admin/templates`, `/admin/analytics`, `/admin/settings`
 
-## Local development
+## Security-first decisions
+- Strict schema rendering (`src/types/platform.ts`)
+- No arbitrary HTML blocks
+- URL and text sanitization helpers (`src/lib/security/sanitize.ts`)
+- Basic API rate limiting (`src/lib/security/rate-limit.ts`)
+- Privileged actions reserved for server routes/functions
 
+## Template system
+- 50 templates distributed by category requirements:
+  - Agency 7
+  - eCommerce 8
+  - Landing 7
+  - Non-Profit 6
+  - Portfolio 7
+  - SaaS 7
+  - Services 8
+
+Generated in `src/lib/templates/catalog.ts` with plan gating (`free`, `starter`, `business`).
+
+## Domain system (Business plan)
+- Verification flow endpoint scaffold: `POST /api/domains/verify`
+- State model included: `pending_dns`, `verifying`, `verified`, `ssl_pending`, `live`, `failed`
+- Middleware host passthrough scaffold: `src/middleware.ts`
+
+## Quickstart
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+## Quality tooling
+- ESLint config: `.eslintrc.cjs`
+- Prettier: `.prettierrc`
+- CI: `.github/workflows/ci.yml`
 
-## Firebase configuration
-
-Set the following in `.env.local`:
-
-```
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
-NEXT_PUBLIC_RAZORPAY_KEY_ID=
-RAZORPAY_KEY_SECRET=
-NEXT_PUBLIC_PLATFORM_FEE_PERCENT=8
-NEXT_PUBLIC_GA_ID=
-NEXT_PUBLIC_SEARCH_CONSOLE=
-```
-
-## Cloud Functions
-
-The `/functions` directory contains placeholders for payment verification, download URLs, order processing, and notifications.
+## Deployment
+See [`docs/SETUP_AND_DEPLOY.md`](docs/SETUP_AND_DEPLOY.md).

@@ -1,0 +1,1 @@
+export default function AdminPages(){return <div className='container-shell'><section className='panel'><h1 className='text-3xl font-bold'>Admin · Pages</h1><p className='mt-2 text-slate-400'>Approval queue and governance workflow.</p></section></div>;}

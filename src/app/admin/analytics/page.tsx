@@ -1,0 +1,1 @@
+export default function AdminAnalytics(){return <div className='container-shell'><section className='panel'><h1 className='text-3xl font-bold'>Admin · Analytics</h1><p className='mt-2 text-slate-400'>Platform health, domain status, and growth metrics.</p></section></div>;}
