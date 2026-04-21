@@ -7,7 +7,7 @@
 }
 
 body {
-  @apply bg-clay text-ink antialiased;
+  @apply bg-[#0B0F14] text-slate-100 antialiased;
 }
 
 main {
